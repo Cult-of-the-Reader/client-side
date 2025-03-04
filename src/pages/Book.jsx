@@ -56,12 +56,11 @@ const BookPage = () => {
           Authorization: `${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
-          bookId: id,
+          bookId: parseInt(id),
           rating,
           comment,
         }),
       });
-
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Error submitting review");
@@ -72,7 +71,7 @@ const BookPage = () => {
       setRating(5);
       setSubmitError("");
 
-      const reviewsResponse = await fetch(`/api/book/${id}/reviews`);
+      const reviewsResponse = await fetch(`http://localhost:3001/api/book/${id}/reviews`);
       const reviewsData = await reviewsResponse.json();
       setReviews(reviewsData);
     } catch (err) {
