@@ -71,7 +71,7 @@ const BookPage = () => {
       setRating(5);
       setSubmitError("");
 
-      const reviewsResponse = await fetch(`http://localhost:3001/api/book/${id}/reviews`);
+      const reviewsResponse = await fetch(`http://localhost:3001/api/v1/book/${id}/reviews`);
       const reviewsData = await reviewsResponse.json();
       setReviews(reviewsData);
     } catch (err) {
