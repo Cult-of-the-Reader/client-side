@@ -14,16 +14,21 @@ const Register = () => {
 		e.preventDefault();
 		setError(null);
 
+		if (!email || !pwd) {
+      setError("Fill the fields")
+      return
+    }
+
 		try {
 			const response = await api.register({ username, email, pwd });
 			console.log(response)
-			if (response.ok) {
+			if (response.message) {
 				navigate('/login')
 			} else {
 				setError(response.error)
 			}
 		} catch (err) {
-			setError(err || "Error");
+			console.error(err)
 		}
 	};
 

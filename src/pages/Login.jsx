@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import api from "../services/api.js";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,12 +12,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await api.login({ email, pwd });
-    if (response.token) {
-      authLogin(response.token);
-      navigate('/');
-    } else {
-      setError(response)
+
+    if (!email || !pwd) {
+      setError("Fill the fields")
+      return
+    }
+
+    try {
+      const response = await api.login({ email, pwd });
+      if (response.token) {
+        authLogin(response.token);
+        navigate("/");
+      } else {
+        setError(response.error);
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -37,12 +47,11 @@ const Login = () => {
           placeholder="Password"
         />
         <button type="submit">Login</button>
-        {error && <p>{error}</p>}
       </form>
-      
+      {error && <p>{error}</p>}
 
     </>
   );
 };
 
-export default Login
+export default Login;

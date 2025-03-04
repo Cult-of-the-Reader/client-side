@@ -7,27 +7,37 @@ const Header = () => {
 	const { user } = useAuth();
 	const { logout: authLogout } = useAuth();
 
+	const toggleMenu = () => {
+    setShowAuth(!showAuth);
+  };
+
+  const closeMenu = () => {
+    setShowAuth(false);
+  };
+
 	return (
-		<header className="header">
+		<header >
+			<h1><Link to="/">
+				Cult Of The Reader
+			</Link></h1>
 			<nav>
-				<div className="account-menu">
+				<div >
 					<button
-						onClick={() => setShowAuth(!showAuth)}
-						className="account-button"
+						onClick={toggleMenu}
 					>
 						My account
 					</button>
 					{showAuth && (
-						<div className="auth-content">
+						<div >
 							{!user ? (
 								<>
-									<Link to="/login" className="dropdown-link">Login</Link>
-									<Link to="/register" className="dropdown-link">Register</Link>
+									<Link to="/login"  onClick={closeMenu}>Login</Link>
+									<Link to="/register" onClick={closeMenu}>Register</Link>
 								</>
 							) : (
 								<>
-									<Link to="/profile" className="auth-content">Profile</Link>
-									<Link to="/" className="logout-content" onClick={authLogout}>Logout</Link>
+									<Link to="/profile" onClick={closeMenu}>Profile</Link>
+									<Link to="/" onClick={() => { authLogout(); closeMenu(); }}>Logout</Link>
 								</>
 							)}
 						</div>

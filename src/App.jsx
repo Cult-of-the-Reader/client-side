@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx'
 import Profile from './pages/Profile.jsx';
+import Book from './pages/Book.jsx';
 
 import './App.css'
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/book/:id" element={<Book />} />
 
           </Routes>
         </Router>
