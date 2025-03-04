@@ -5,7 +5,7 @@ import Header from './components/Header.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx'
-
+import Profile from './pages/Profile.jsx';
 
 import './App.css'
 
@@ -20,6 +20,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+
           </Routes>
         </Router>
       </AuthProvider>
