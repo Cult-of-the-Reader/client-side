@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import api from "../services/api";
 
 const Profile = () => {
   const [userData, setUserData] = useState({
@@ -14,15 +15,11 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/v1/profile", {
-          method: "GET",
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await api.getProfile()
         const data = await response.json();
+        localStorage.setItem("userData", data?.user)
         setUserData({
-          user: data?.user,
+          user:  localStorage.getItem("userData"),
           phoneNumber: data.phoneNumber || "",
           dateOfBirth: data.dateOfBirth || "",
           address: data.address || "",
@@ -48,16 +45,8 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/api/v1/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(userData),
-      });
-
-      if (response.ok) {
+     const response = await api.putProfile(userData)
+      if (response.message) {
         setIsEditing(false);
       } else {
         console.error("Error updating profile.");

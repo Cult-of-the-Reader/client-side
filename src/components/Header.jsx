@@ -6,6 +6,7 @@ const Header = () => {
 	const [showAuth, setShowAuth] = useState(false);
 	const { user } = useAuth();
 	const { logout: authLogout } = useAuth();
+	const logged = !!localStorage.getItem("token")
 
 	const toggleMenu = () => {
     setShowAuth(!showAuth);
@@ -25,12 +26,14 @@ const Header = () => {
 					<button
 						onClick={toggleMenu}
 					>
-						My account
+						{logged ? ("My account"
+) : ("Auth") }
 					</button>
 					{showAuth && (
 						<div >
 							{!user ? (
 								<>
+								<div></div>
 									<Link to="/login"  onClick={closeMenu}>Login</Link>
 									<Link to="/register" onClick={closeMenu}>Register</Link>
 								</>

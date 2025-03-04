@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (token) {
       setUser(token);
     }
@@ -19,9 +18,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    
     localStorage.removeItem("token");
-
     setUser(null);
   };
 

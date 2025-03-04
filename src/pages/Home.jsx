@@ -14,6 +14,7 @@ const Home = () => {
       setError(null);
       try {
         const data = await api.getBooks();
+
         setBooks(data);
       } catch (err) {
         setError(err.message || "Error listing books");

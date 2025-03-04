@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import api from "../services/api";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -20,20 +21,19 @@ const BookPage = () => {
   useEffect(() => {
     const fetchBookData = async () => {
       try {
-        const bookResponse = await fetch(
-          `http://localhost:3001/api/v1/book/${id}`
-        );
+        const bookResponse = await api.getBookById(id)
+
         if (!bookResponse.ok) throw new Error("Book not found");
+
         const bookData = await bookResponse.json();
         setBook(bookData);
 
-        const reviewsResponse = await fetch(
-          `http://localhost:3001/api/v1/book/${id}/reviews`
-        );
+        const reviewsResponse = await api.getReviewsBooks(id)
+
         if (!reviewsResponse.ok) throw new Error("Error loading reviews");
+
         const reviewsData = await reviewsResponse.json();
         setReviews(reviewsData);
-
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -49,18 +49,7 @@ const BookPage = () => {
     if (!isAuthenticated) return navigate("/login");
 
     try {
-      const response = await fetch("http://localhost:3001/api/v1/reviews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({
-          bookId: parseInt(id),
-          rating,
-          comment,
-        }),
-      });
+      const response = await api.postReviews(id, rating, comment)
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Error submitting review");
@@ -71,7 +60,7 @@ const BookPage = () => {
       setRating(5);
       setSubmitError("");
 
-      const reviewsResponse = await fetch(`http://localhost:3001/api/v1/book/${id}/reviews`);
+      const reviewsResponse = await api.getReviewsBooks(id);
       const reviewsData = await reviewsResponse.json();
       setReviews(reviewsData);
     } catch (err) {
@@ -102,7 +91,7 @@ const BookPage = () => {
             {book.discount > 0 ? (
               <>
                 <span>After: ${book.price.toFixed(2)}</span>
-								<br />
+                <br />
                 <span>Now: ${(book.price * (1 - book.discount)).toFixed(2)}</span>
                 <span> ({Math.round(book.discount * 100)}% OFF)</span>
               </>
@@ -172,16 +161,19 @@ const BookPage = () => {
         {reviews.length === 0 ? (
           <p>No reviews yet</p>
         ) : (
-          reviews.map((review) => (
-            <div key={review._id}>
-              <p>Rating: {review.rating}/5</p>
-              <p>{review.comment}</p>
-              <p>By: {review.userId || "Anonymous"}</p>
-              {review.createdAt && (
-                <p>Date: {new Date(review.createdAt).toLocaleDateString()}</p>
-              )}
-            </div>
-          ))
+          reviews
+            .slice()
+            .reverse()
+            .map((review) => (
+              <div key={review._id}>
+                <p>Rating: {review.rating}/5</p>
+                <p>{review.comment}</p>
+                <p>By: {review.userId || "Anonymous"}</p>
+                {review.createdAt && (
+                  <p>Date: {new Date(review.createdAt).toLocaleDateString()}</p>
+                )}
+              </div>
+            ))
         )}
       </div>
     </div>
