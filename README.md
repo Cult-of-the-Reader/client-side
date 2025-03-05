@@ -22,3 +22,6 @@ Home, Register, Login, Profile/Dashboard, Book Page + Reviews...
 
 Utilidades
 URL de peticiones, AuthContext, Rutas Front, Sticky Header, Ruta Privadas, fichero de peticiones http
+
+Deploy
+fichero static.json para renderizar los archivos estáticos
