@@ -6,8 +6,9 @@ import "./BooksList.css";
 
 const BooksList = ({ books }) => {
   const [showCart, setShowCart] = useState(false);
-  const navigate = useNavigate();
   const { cart, addToCart, updateQuantity, removeFromCart, total } = useCart();
+  const navigate = useNavigate();
+
 
   const handleAddToCart = (e, book) => {
     e.stopPropagation();
@@ -20,7 +21,7 @@ const BooksList = ({ books }) => {
         className="cart-toggle-btn"
         onClick={() => setShowCart(!showCart)}
       >
-        🜏 Cart ({cart.length})
+        Cart ({cart.length})
       </button>
 
       <div className="books-container">
@@ -40,10 +41,10 @@ const BooksList = ({ books }) => {
                   className="add-to-cart-btn"
                   onClick={(e) => handleAddToCart(e, book)}
                 >
-                  🜏 Claim Soul
+                  Claim Soul
                 </button>
               ) : (
-                <div className="sold-out">Sacrificio Completado</div>
+                <div className="sold-out">Out od Stock</div>
               )}
             </div>
           </div>

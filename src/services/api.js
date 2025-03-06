@@ -103,7 +103,7 @@ export default {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				Authorization: `${localStorage.getItem("token")}`,
 			},
 			body: JSON.stringify({ quantity }),
 		});
@@ -111,13 +111,16 @@ export default {
 		return response.json()
 	},
 
-	putCartItem: async () => {
+	putCartItem: async (cartItemId) => {
 		const response = await fetch(`${API_URL}/cart/${cartItemId}`, {
 			method: "PUT",
 			headers: {
+				"Content-Type": "application/json",
 				Authorization: `${localStorage.getItem("token")}`,
 			},
 		});
+
+		console.log(response)
 
 		return response.json()
 	}

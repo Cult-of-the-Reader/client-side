@@ -8,7 +8,7 @@ const Cart = ({ items, total, onRemoveItem, onUpdateQuantity, onClose }) => {
           &times;
         </button>
 
-        <h2>Ritual Cart 🜏</h2>
+        <h2>Cart</h2>
 
         <div className="cart-items">
           {items.map((item) => (
@@ -59,10 +59,10 @@ const Cart = ({ items, total, onRemoveItem, onUpdateQuantity, onClose }) => {
         </div>
 
         <div className="cart-total">
-          <h3>Total Sacrifice: ${total.toFixed(2)}</h3>
+          <h3>Total: ${total.toFixed(2)}</h3>
         </div>
 
-        <button className="checkout-btn">Complete Ritual</button>
+        <button className="checkout-btn">Checkout</button>
       </div>
     </div>
   );

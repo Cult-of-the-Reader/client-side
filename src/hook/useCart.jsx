@@ -12,10 +12,9 @@ const useCart = () => {
       try {
         const response = await api.getCartItems();
 
-        if (!response.ok) throw new Error("Error loading cart");
+        if (!response) throw new Error("Error loading cart");
 
-        const data = await response.json();
-        setCart(data.cartItems || []);
+        setCart(response.cartItems || []);
       } catch (err) {
         setError(err.message);
         setCart([]);
@@ -34,13 +33,12 @@ const useCart = () => {
       if (!currentCartItems) {
         const response = await api.postCartItem(book._id);
 
-        if (!response.ok) throw new Error("Error adding to cart");
+        if (!response) throw new Error("Error adding to cart");
 
-        const data = await response.json();
         setCart((prev) => [
           ...prev,
           {
-            _id: data._id,
+            _id: response._id,
             book: {
               _id: book._id,
               title: book.title,
@@ -64,8 +62,9 @@ const useCart = () => {
   const updateQuantity = async (cartItemId, newQuantity) => {
     try {
       const response = await api.postMoreItemsCartItem(cartItemId, newQuantity);
+      console.log(response)
 
-      if (!response.ok) throw new Error("Error updating quantity");
+      if (!response) throw new Error("Error updating quantity");
 
       setCart((prev) =>
         prev.map((item) =>
@@ -80,8 +79,9 @@ const useCart = () => {
   const removeFromCart = async (cartItemId) => {
     try {
       const response = await api.putCartItem(cartItemId);
+      console.log("removeFromCart",response)
 
-      if (!response.ok) throw new Error("Error removing from cart");
+      if (!response) throw new Error("Error removing from cart");
 
       setCart((prev) => prev.filter((item) => item.cartItemId !== cartItemId));
     } catch (err) {
@@ -96,7 +96,6 @@ const useCart = () => {
     const priceWithDiscount = price * (1 - discount);
     return sum + priceWithDiscount * quantity;
   }, 0);
-
   return {
     cart,
     loading,
