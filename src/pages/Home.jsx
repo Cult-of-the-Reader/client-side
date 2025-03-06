@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BooksList from "../components/BooksList.jsx";
 import api from "../services/api";
 
 const Home = () => {
@@ -34,25 +35,7 @@ const Home = () => {
   }
 
   return (
-    <>
-      <div className="books-container">
-        {books.map((book) => (
-          <div
-            className="book-card"
-            key={book._id}
-            onClick={() => navigate(`/book/${book._id}`)}
-            style={{ cursor: "pointer" }}
-          >
-            <img className="book-cover" src={book.cover} alt={book.title} />
-            <h3 className="book-title">
-              {book.title} - ({book.year})
-            </h3>
-            <p className="book-author">Author: {book.author}</p>
-            <p className="book-category">Category: {book.category}</p>
-          </div>
-        ))}
-      </div>
-    </>
+    <BooksList books={books} />
   );
 };
 

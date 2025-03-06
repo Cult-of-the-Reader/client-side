@@ -1,4 +1,5 @@
-const API_URL = "https://cult-of-the-reader.onrender.com/api/v1";
+/* https://cult-of-the-reader.onrender.com/api/v2 */
+const API_URL = "http://localhost:3001/api/v2";
 
 export default {
 	register: async (userData) => {
@@ -71,6 +72,55 @@ export default {
 		});
 
 		return response
+	},
+
+	getCartItems: async () => {
+		const response = await fetch(`${API_URL}/cart`, {
+			method: "GET",
+			headers: {
+				Authorization: `${localStorage.getItem("token")}`
+			}
+		})
+
+		return response.json()
+	},
+
+	postCartItem: async (bookId) => {
+		const response = await fetch(`${API_URL}/add-cart`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `${localStorage.getItem("token")}`,
+			},
+			body: JSON.stringify({bookId}),
+		});
+
+		return response.json()
+	},
+
+	postMoreItemsCartItem: async (cartItemId, quantity) => {
+		const response = await fetch(`${API_URL}/cart/${cartItemId}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
+			body: JSON.stringify({ quantity }),
+		});
+
+		return response.json()
+	},
+
+	putCartItem: async () => {
+		const response = await fetch(`${API_URL}/cart/${cartItemId}`, {
+			method: "PUT",
+			headers: {
+				Authorization: `${localStorage.getItem("token")}`,
+			},
+		});
+
+		return response.json()
 	}
+
 
 }
