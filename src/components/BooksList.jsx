@@ -6,22 +6,29 @@ import "./BooksList.css";
 
 const BooksList = ({ books }) => {
   const [showCart, setShowCart] = useState(false);
-  const { cart, addToCart, updateQuantity, removeFromCart, total } = useCart();
+  const { cart, addToCart, updateQuantity, removeFromCart, total, refresh } = useCart();
   const navigate = useNavigate();
-
+  const [length ,setLength] = useState('')
 
   const handleAddToCart = (e, book) => {
     e.stopPropagation();
     addToCart(book);
   };
 
+  const handleCartToggle = () => {
+    if (!showCart) {
+      refresh();
+    }
+    setShowCart(!showCart);
+  };
+
   return (
     <div className="books-page">
       <button
         className="cart-toggle-btn"
-        onClick={() => setShowCart(!showCart)}
+        onClick={handleCartToggle}
       >
-        Cart ({cart.length})
+        Cart ({length})
       </button>
 
       <div className="books-container">
@@ -39,12 +46,12 @@ const BooksList = ({ books }) => {
               {book.stock - book.reservedStock > 0 ? (
                 <button
                   className="add-to-cart-btn"
-                  onClick={(e) => handleAddToCart(e, book)}
+                  onClick={(e) => {handleAddToCart(e, book); setLength(book.quantity)}}
                 >
                   Claim Soul
                 </button>
               ) : (
-                <div className="sold-out">Out od Stock</div>
+                <div className="sold-out">Out of Stock</div>
               )}
             </div>
           </div>

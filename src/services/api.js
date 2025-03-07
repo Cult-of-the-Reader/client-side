@@ -92,38 +92,51 @@ export default {
 				"Content-Type": "application/json",
 				Authorization: `${localStorage.getItem("token")}`,
 			},
-			body: JSON.stringify({bookId}),
+			body: JSON.stringify({ bookId }),
 		});
 
 		return response.json()
 	},
 
-	postMoreItemsCartItem: async (cartItemId, quantity) => {
-		const response = await fetch(`${API_URL}/cart/${cartItemId}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `${localStorage.getItem("token")}`,
-			},
-			body: JSON.stringify({ quantity }),
-		});
-
-		return response.json()
+	decrementCartItem: async (bookId) => {
+		try {
+			const response = await fetch(`${API_URL}/decrement-cart/${bookId}`, {
+				method: "PUT",
+				headers: {
+					Authorization: `${localStorage.getItem("token")}`,
+				},
+			});
+			
+			if (!response) {
+				throw new Error("Failed to decrement item");
+			}
+			
+			return response.json();
+		} catch (error) {
+			console.error("Error in decrementCartItem:", error);
+			throw error;
+		}
 	},
-
-	putCartItem: async (cartItemId) => {
-		const response = await fetch(`${API_URL}/cart/${cartItemId}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `${localStorage.getItem("token")}`,
-			},
-		});
-
-		console.log(response)
-
-		return response.json()
+	
+	deleteCartItem: async (bookId) => {
+		try {
+			const response = await fetch(`${API_URL}/cart/${bookId}`, {
+				method: "DELETE", 
+				headers: {
+					Authorization: `${localStorage.getItem("token")}`,
+				},
+			});
+			console.log(response)
+			
+			if (!response.ok) {
+				throw new Error("Failed to remove item from cart");
+			}
+			
+			return response.json();
+		} catch (error) {
+			console.error("Error in deleteCartItem:", error);
+			throw error;
+		}
 	}
-
 
 }

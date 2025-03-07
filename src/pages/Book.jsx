@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import useCart from "../hook/useCart.jsx";
+import Cart from "../components/Cart.jsx";
 import api from "../services/api";
 
 const BookPage = () => {
@@ -15,6 +17,21 @@ const BookPage = () => {
   const [comment, setComment] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const { cart, addToCart, updateQuantity, removeFromCart, total, refresh } = useCart();
+  const [showCart, setShowCart] = useState(false);
+
+
+  const handleAddToCart = (e, book) => {
+    e.stopPropagation();
+    addToCart(book);
+  };
+
+  const handleCartToggle = () => {
+    if (!showCart) {
+      refresh();
+    }
+    setShowCart(!showCart);
+  };
 
   const isAuthenticated = !!user;
 
@@ -75,6 +92,12 @@ const BookPage = () => {
 
   return (
     <div>
+      <button
+        className="cart-toggle-btn"
+        onClick={handleCartToggle}
+      >
+        Cart ({cart.length})
+      </button>
       <div>
         <img src={book.cover} alt={book.title} />
         <div>
@@ -111,7 +134,7 @@ const BookPage = () => {
             {book.signedCopy && <span>Signed Copy</span>}
           </div>
           <div>
-            <button disabled={book.stock === 0}>Add to Cart</button>
+            <button disabled={book.stock === 0} onClick={(e) => handleAddToCart(e, book)}>Add to Cart</button>
           </div>
         </div>
       </div>
@@ -176,6 +199,13 @@ const BookPage = () => {
             ))
         )}
       </div>
+        <Cart
+          items={cart}
+          total={total}
+          onRemoveItem={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+          onClose={() => setShowCart(false)}
+        />
     </div>
   );
 };
