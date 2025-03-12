@@ -1,0 +1,74 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+
+:root {
+  /* Colores principales */
+  --primary-dark: #1A1A1A;    /* Negro profundo para fondos */
+  --primary-gold: #C5A572;    /* Dorado principal */
+  
+  /* Colores secundarios */
+  --secondary-gold: #DAB88B;  /* Dorado más claro para hovers */
+  --secondary-dark: #2C2C2C;  /* Gris muy oscuro */
+  
+  /* Colores de texto */
+  --text-dark: #1A1A1A;      /* Para textos principales */
+  --text-light: #FFFFFF;      /* Para textos sobre fondos oscuros */
+  --text-gold: #C5A572;      /* Para textos destacados */
+  --text-muted: #666666;      /* Para textos secundarios */
+  
+  /* Colores de estado */
+  --hover-dark: #333333;     /* Para efectos hover en elementos oscuros */
+  --shadow-color: rgba(0, 0, 0, 0.2); /* Para sombras más pronunciadas */
+
+  /* Tipografías principales */
+  --font-titles: 'Cinzel', serif;        /* Para títulos principales y logo */
+  --font-headers: 'Playfair Display', serif;  /* Para encabezados secundarios */
+  --font-body: 'Cormorant Garamond', serif;   /* Para texto general */
+
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-dark);
+  background-color: var(--text-light);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Aplicación de fuentes */
+h1, .logo {
+  font-family: var(--font-titles);
+  font-weight: 700;
+  color: var(--text-gold);
+}
+
+h2, h3, h4 {
+  font-family: var(--font-headers);
+  font-weight: 600;
+}
+
+body {
+  background-color: var(--secondary-dark);
+  font-family: var(--font-body);
+  min-width: 320px;
+  min-height: 100vh;
+  font-size: 1.1rem;
+}
+
+button {
+  font-family: var(--font-titles);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

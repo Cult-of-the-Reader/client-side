@@ -1,0 +1,127 @@
+.cart-content {
+  padding: 0.5rem;
+  max-width: 100%;
+  font-size: 0.75rem;
+}
+
+.cart-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #3d3d3d;
+  margin-bottom: 1rem;
+}
+
+.cover-wrapper {
+  flex-shrink: 0;
+  position: relative;
+}
+
+
+.item-cover {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.book-details {
+  flex-grow: 1;
+  display: flex;
+  gap: 0.1rem;
+  padding-left: 0.1rem;
+}
+
+.book-details h4 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-family: var(--font-headers);
+  color: var(--text-gold);
+}
+
+.book-details p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.item-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.price-container {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.original-price {
+  text-decoration: line-through;
+  font-size: 0.25rem;
+  color: var(--text-muted);
+}
+
+.discounted-price {
+  color: var(--primary-gold);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--secondary-dark);
+  padding: 0.2rem;
+  border-radius: 3px;
+}
+
+.quantity-controls button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--primary-gold);
+  color: var(--text-gold);
+  background: transparent;
+  border-radius: 2px;
+}
+
+.quantity {
+  color: var(--text-gold);
+  min-width: 30px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 0.75rem;
+  padding: 0.2rem 0;
+  text-align: right;
+}
+
+.cart-footer {
+  padding: 1rem 0 0;
+  border-top: 1px solid #3d3d3d;
+  margin-top: 1rem;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: var(--primary-gold);
+  color: var(--text-dark);
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.empty-cart {
+  color: var(--text-muted);
+  padding: 1rem 0;
+  font-size: 0.9rem;
+}

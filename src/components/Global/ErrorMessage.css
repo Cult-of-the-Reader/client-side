@@ -1,0 +1,19 @@
+.error-container {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    background-color: rgba(26, 26, 26, 0.05);
+    border-radius: 8px;
+}
+
+.error-container h3 {
+    color: var(--text-dark);
+    font-family: var(--font-titles);
+    margin-bottom: 1rem;
+}
+
+.error-container p {
+    color: var(--text-muted);
+    font-family: var(--font-body);
+} 
