@@ -24,13 +24,7 @@ function App() {
                 <Route path="/book/:id" element={<Book />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={<Profile />}
-                /*  element={
-                   <PrivateRoute>
-                     <Profile />
-                   </PrivateRoute>
-                 } */
-                />
+                <Route path="/profile" element={<Profile />} />
               </Routes>
             </div>
           </Router>

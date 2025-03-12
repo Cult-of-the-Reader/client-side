@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
-import ProfileForm from "../components/Auth/AuthForm.jsx";
+import ProfileForm from "../components/Profile/ProfileForm.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
 const Profile = () => {
@@ -19,7 +19,6 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!token) return;
       try {
         const response = await api.getProfile(token);
         const data = await response.json();
@@ -63,14 +62,15 @@ const Profile = () => {
   };
 
   return (
-
-    <ProfileForm
-      userData={userData}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      isEditing={isEditing}
-      setIsEditing={setIsEditing}
-    />
+    <>
+      <ProfileForm
+        userData={userData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+      />
+    </>
   );
 };
 
