@@ -33,13 +33,13 @@ const Header = () => {
       <nav>
         <div className="nav-links">
           {/* <Link to="/about" className="nav-link">Contact</Link> */}
-          <Link to="/about" className="nav-link">About Us</Link>
+          {/* <Link to="/about" className="nav-link">About Us</Link> */}
 
           {token && (
             <div className="cart-container">
               <button
                 className="nav-link cart-button"
-                onClick={() => { setShowCart(!showCart); console.log(cart) }}
+                onClick={() => setShowCart(!showCart)}
               >
                 Cart ({cart.length})
               </button>
@@ -62,7 +62,7 @@ const Header = () => {
           )}
           <div className="auth-container">
             <button
-              className="auth-button"
+              className="header-auth-button"
               onClick={toggleMenu}
             >
               {token ? "Account" : "Access"}

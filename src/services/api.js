@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api/v2";
+const API_URL = "http://localhost:3001/api/v4";
 
 export default {
   register: async (userData) => {
@@ -20,7 +20,6 @@ export default {
   },
 
   getProfile: async (token) => {
-    console.log(token)
     const response = await fetch(`${API_URL}/profile`, {
       method: "GET",
       headers: {

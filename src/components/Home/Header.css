@@ -23,19 +23,20 @@ header h1 a:hover {
 	position: relative;
 }
 
-.auth-button {
-	background-color: var(--primary-light);
-	color: var(--text-light);
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
+.header-auth-button {
+	background-color: var(--primary-gold);
+  color: var(--text-dark);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
 	font-size: 16px;
 	transition: background-color 0.3s ease;
 }
 
-.auth-button:hover {
+.header-auth-button:hover {
 	background-color: var(--secondary-dark);
+	color: var(--text-light);
 }
 
 .auth-menu {

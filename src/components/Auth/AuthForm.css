@@ -31,13 +31,13 @@
 }
 
 .auth-button {
-  padding: 10px;
   background-color: var(--primary-gold);
   color: var(--text-dark);
   border: none;
+  padding: 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem; /* Tamaño de fuente */
+  font-size: 1rem;
 }
 
 .auth-button:hover {
