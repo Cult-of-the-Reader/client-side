@@ -19,6 +19,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
+      if (!token) return;
       try {
         const response = await api.getProfile(token);
         const data = await response.json();

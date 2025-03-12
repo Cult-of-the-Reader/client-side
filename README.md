@@ -6,6 +6,7 @@ This document outlines the structure of the client-side React application built 
 
 ```
 client-side/
+├── cypress                       # test
 ├── public/
 │   ├── favicon-16x16.png         # Small favicon
 │   ├── favicon-32x32.png         # Medium favicon
