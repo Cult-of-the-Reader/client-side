@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api/v4";
+const API_URL = "https://cult-of-the-reader.onrender.com/api/v4";
 
 export default {
   register: async (userData) => {
