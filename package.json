@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:render": "vite build && cp static.json dist/",
+    "build:render": "vite build && cp render.json dist/",
+    "build:w": "vite build && copy static.json dist\\",
     "lint": "eslint .",
     "preview": "vite preview"
   },
