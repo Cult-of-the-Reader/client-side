@@ -1,14 +1,15 @@
+import { lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import { CartProvider } from './contexts/CartContext.jsx'
 
 import Header from './components/Home/Header.jsx'
 
-import Home from './pages/Home.jsx'
-import Book from './pages/Book.jsx'
-import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
-import Profile from './pages/Profile.jsx'
+const Home = lazy(() => import('./pages/Home.jsx'))
+const Book = lazy(() => import('./pages/Book.jsx'))
+const Login = lazy(() => import('./pages/Login.jsx'))
+const Register = lazy(() => import('./pages/Register.jsx'))
+const Profile = lazy(() => import('./pages/Profile.jsx'))
 
 function App() {
 
